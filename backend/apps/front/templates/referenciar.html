@@ -1,0 +1,44 @@
+{% extends 'index.html'%}
+
+{% load static %}
+{% block content %}
+
+
+
+<div class="row align-items-center d-flex justify-content-around mx-auto my-3 px-0">
+    <div id="controlesLiberar" class="col-md-6 col-12 mb-5 card rounded p-2 mx-auto bg-c-grey2 shadow-sm" style="bottom: 150px;left: 30px;">
+        <div class="card card-cate container-fluid" style="border: ridge #141414 1px;">
+			<p class="font-weight-bold h2 text-secondary text-center"><FONT COLOR="#009AED">HOMING</FONT></p>
+            <!-- <p class="text-warning h2 text-center"><FONT COLOR="red">LA MESA DEBE ESTAR LIBRE DE OBJETOS</FONT></p> -->
+		</div>   
+        <div class="row-col-12 mt-3 d-flex justify-content-around p-1">
+			<button type="button" class="btn btn-primary btn-lg" style="margin: 10px" id="homeExec" rtn={{ cerado }}>Referenciar EJES</button>
+            <button type="button" class="btn btn-danger btn-lg detener" style="margin: 10px" routine="{{ stop_all }}"><FONT SIZE=5>Detener</FONT></button>
+			<article class="bg-secondary rounded-pill text-white w-25 text-center p-3" style="margin: 10px" id="homeOk">HOME OK</article>
+            <button type="button" class="btn btn-warning btn-lg" style="margin: 10px" id="homeLineal" rtn={{ cerado_lineal }}>Referenciar EJE LINEAL</button>
+		</div>
+        
+       
+        
+    </div>
+    <div class="col-md-2 col-12 justify-content-around mb-5 float-right border shadow my-auto rounded bg-white my-3 px-1 py-1" style="right: 10px;">
+        {% include 'monitorComponent.html' %}
+        <div id="component-monitor"></div>
+    </div>
+</div>
+<div class="col-md-11 align-items-center d-flex justify-content-around my-3 px-0">
+    <div id="contenedor-terminal-texto" class="card col-md-5 border shadow rounded bg-white p-1" style="height: 200px;bottom: 400px;">
+        <div id="salidaDeTexto"></div>
+        {% include 'cuadroDeTexto.html' %}
+    </div>
+    <div id="contenedor-terminal-texto-errores" class="card col-md-5 border shadow rounded bg-white p-1" style="height: 200px;bottom: 400px;right: 80px;">
+        <div id="salidaDeTextoErrores"></div>
+        {% include 'cuadroDeErrores.html' %}
+    </div>
+</div>
+
+
+<script src="{% static 'js/referenciar.js' %}"></script>
+<script src="{% static 'js/logAlarma.js' %}"></script>
+<script src="{% static 'js/stopAll.js' %}"></script>
+{% endblock %}

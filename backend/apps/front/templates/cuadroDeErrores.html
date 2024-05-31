@@ -1,0 +1,12 @@
+{% load static %}
+{% block content %}
+<div class="row p-0 m-0">
+    <div class="col bg-danger text-center font-weight-bold text-white rounded-top">
+        MENSAJE DE ERROR
+    </div>
+</div>
+<div id="terminalDeTextoErrores" class="overflow-auto  py-1 m-0 text-left" style="height: 330px; color: #8B0000; font-size: 13px;">
+<ul id="cuadroMensajesErrores" style="padding-left: 10px;"></ul>
+</div>
+<script src="{% static 'js/logAlarma.js' %}"></script>
+{% endblock %}

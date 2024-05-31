@@ -1,0 +1,220 @@
+{% extends 'indexNoData.html'%}
+{% load static %}
+{% block content %}
+ <!-- <style type="text/css">
+    body {
+        overflow: hidden;
+    }
+</style> -->
+<div class="row m-auto align-items-center d-flex justify-content-around mx-auto px-0 mb-5 py-3" id="estados">
+    <div class="container-fluid col-md-3 card p-1 border shadow rounded mb-3">
+        <table class="table table-sm table-striped table-borderless" id="tablaFlagsFinEstado">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Flags de fin Estado</th>
+                </tr>
+                <tr>
+                    <th>Flag</th>
+                    <th class="text-center">Eje H</th>
+                    <th class="text-center">Eje C</th>
+                    <th class="text-center">Eje L</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>kFlgFin_Ok</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_Ok_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_Ok_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_Ok_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_Canceled</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_Canceled_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_Canceled_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_Canceled_L"></div></td>
+                </tr>
+                <tr> 
+                    <td>kFlgFin_EmStop</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_Error_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_Error_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_Error_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_DrvHomingError</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_DrvComingError_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_DrvComingError_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_DrvComingError_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_EchoTimeout</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_EchoTimeout_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_EchoTimeout_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_EchoTimeout_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_PosAbsDisabled</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_PosAbsDisabled_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_PosAbsDisabled_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_PosAbsDisabled_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_UnknownZero</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_UnknownZero_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_UnknownZero_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_UnknownZero_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_PosFeedbackError</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_PosFeedbackError_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_PosFeedbackError_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_PosFeedbackError_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_LimitVelExceeded</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_LimitHelExceeded_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_LimitHelExceeded_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_LimitHelExceeded_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_LimitPosExceeded</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_LimitPosExceeded_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_LimitPosExceeded_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_LimitPosExceeded_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_LimitFzaExceeded</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_LimitFzaExceeded_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_LimitFzaExceeded_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_LimitFzaExceeded_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_Yield</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_Yield_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_Yield_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_Yield_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_InvalidState</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_InvalidState_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_InvalidState_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_InvalidState_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_DrvNotEnabled</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_DrvNotEnabled_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_DrvNotEnabled_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_DrvNotEnabled_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kFlgFin_AxisLimitTorque</td>
+                    <td><div class="fin-estadosH led led-grey" id="kFlgFin_AxisDisabled_H"></div></td>
+                    <td><div class="fin-estadosC led led-grey" id="kFlgFin_AxisDisabled_C"></div></td>
+                    <td><div class="fin-estadosL led led-grey" id="kFlgFin_AxisDisabled_L"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid col-md-3 card p-1 border shadow rounded mb-3">
+        <table class="table table-sm table-striped table-borderless" id="tablaFlagsFinEstado">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Flags de Estados</th>
+                </tr>
+                <tr>
+                    <th>Flag</th>
+                    <th class="text-center">Eje H</th>
+                    <th class="text-center">Eje C</th>
+                    <th class="text-center">Eje L</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>kEst_Safe</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Safe_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Safe_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Safe_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_Preinitial</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Preinitial_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Preinitial_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Preinitial_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_Initial</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Initial_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Initial_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Initial_L"></div></td>
+                </tr>
+                <tr> 
+                    <td>kEst_PoweringOn</td>
+                    <td><div class="estadoH led led-grey" id="kEst_PoweringOn_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_PoweringOn_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_PoweringOn_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_PoweringOff</td>
+                    <td><div class="estadoH led led-grey" id="kEst_PoweringOff_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_PoweringOff_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_PoweringOff_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_Stopping</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Stopping_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Stopping_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Stopping_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_FastStopping</td>
+                    <td><div class="estadoH led led-grey" id="kEst_FastStopping_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_FastStopping_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_FastStopping_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_Homing</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Homing_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Homing_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Homing_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_Positioning</td>
+                    <td><div class="estadoH led led-grey" id="kEst_Positioning_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_Positioning_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_Positioning_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_MovToVel</td>
+                    <td><div class="estadoH led led-grey" id="kEst_MovToVel_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_MovToVel_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_MovToVel_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_MovToPos</td>
+                    <td><div class="estadoH led led-grey" id="kEst_MovToPos_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_MovToPos_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_MovToPos_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_MovToPosLoad</td>
+                    <td><div class="estadoH led led-grey" id="kEst_MovToPosLoad_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_MovToPosLoad_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_MovToPosLoad_L"></div></td>
+                </tr>
+                <tr>
+                    <td>kEst_MovToFza</td>
+                    <td><div class="estadoH led led-grey" id="kEst_MovToFza_H"></div></td>
+                    <td><div class="estadoC led led-grey" id="kEst_MovToFza_C"></div></td>
+                    <td><div class="estadoL led led-grey" id="kEst_MovToFza_L"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row justify-content-center container-fluid">
+        <div class="col-md-12 text-right justify-content-center">
+            <a type="button" class="btn btn-primary btn-lg" href="{% url 'sensores' %}">Pagina 1</a>
+            <a type="button" class="btn btn-secondary btn-lg" href="{% url 'home' %}">Volver</a>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/sensoresP2.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,272 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+<!-- muestra boton -->
+{% if user.is_authenticated %}
+<div class="col-md-2 col-12 mb-5 float-right border shadow rounded bg-white  px-1 py-1" style="right: 10px;">
+    {% include 'monitorComponent.html' %}
+    <div id="component-monitor"></div>
+    <div class="py-2 d-flex justify-content-around" id="contenedor-enter-safe">
+        <button class="btn btn-warning text-center" id="exit_safe_modeXOff"  cmd="{{ exit_safe_mode }}" > Exit safe mode </button>
+        <button class="btn btn-success text-center"  id="enter_safe_modeXOn" cmd="{{ enter_safe_mode }}" > Enter safe mode </button>
+    </div>
+    <div class="led led-grey" id="mode_indicator"></div>
+</div>
+
+
+{% else %}
+
+<!-- no muestra boton -->
+<div class="col-md-2 col-12 mb-5 float-right border shadow rounded bg-white px-1 py-1" style="right: 10px;">
+	{% include 'monitorComponent.html' %}
+	<div id="component-monitor"></div>
+</div>
+{% endif %}
+
+
+<div class="col-md-7 d-flex justify-content-around mx-auto my-3 px-0" style="color: black;right: 90px;">
+	<div id="contenedorEjeLineal" class="col-md-5 col-12 mb-5 float-left ml-md-2 border shadow rounded bg-white p-2" style="height: auto;">
+		<div class="container-fluid">
+			<div class="row justify-content-center" style="color: black;">
+				<h4><u>Eje Lineal</u></h4>
+			</div>
+			<div class="row justify-content-center mb-3">
+				<div id="accordionLineal" class="w-100">
+					<div class="card">
+
+
+						<!-- lineal on/off -->
+
+						<div class="card-header" style="height: 91px;padding-right: 10px;">
+							<div class="enables">
+							<button type="button" class="btn btn-primary btn-lg" eje={{ id_eje_avance }} cmd={{ power_on }} id="onLineal" style="margin-bottom: 90px" >ON</button>		
+							<label class="box box-grey" id="linealEnable"><FONT SIZE=4>Enable</FONT></label>
+							<button type="button" class="btn btn-danger btn-lg" eje={{ id_eje_avance }} cmd={{ power_off }} id="offLineal" style="margin-bottom: 90px" >Off</button>
+							</div>
+						</div>
+
+						<!-- lineal on/off -->
+
+
+
+						<div class="card-header" id="headingOneLineal">
+							<h5 class="mb-0">
+								<button class="btn btn-link font-weight-bold" data-toggle="collapse" data-target="#collapseOneRelativa" aria-expanded="true" aria-controls="collapseOneRelativa">
+									Posición RELATIVA
+								</button>
+							</h5>
+						</div>
+						<div id="collapseOneRelativa" class="collapse" aria-labelledby="headingOneLineal" data-parent="#accordionLineal" style="color: black;">
+							<div class="card-body mb-1">
+								<div class="form-inline d-flex justify-content-around mb-3 mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Posición:</FONT></label>
+									<input type="number" class="col-md-8" id="linealRelPosValue" value=0.00>
+								</div>
+								<div class="form-inline d-flex justify-content-around mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Velocidad:</FONT></label>
+									<input type="number" class="col-md-8" id="linealRelVelocityValue" value=0.00>
+								</div>		
+							</div>
+							<div class="align-self-center text-center mb-3">
+								<button class="btn btn-primary btn-lg" id="linealRelFwd" cmd={{ mov_to_pos }} eje={{ id_eje_avance }}>Adelante</button>
+								<button class="btn btn-secondary btn-lg" id="linealRelBwd" cmd={{ mov_to_pos }} eje={{ id_eje_avance }}>Atrás</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="headingTwoLineal">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed font-weight-bold" data-toggle="collapse" data-target="#collapseOneAbsoluta" aria-expanded="false" aria-controls="collapseOneAbsoluta">
+									Posición ABSOLUTA
+								</button>
+							</h5>
+						</div>
+						<div id="collapseOneAbsoluta" class="collapse show" aria-labelledby="headingTwoLineal" data-parent="#accordionLineal" style="color: black;">
+							<div class="card-body">
+								<div class="form-inline d-flex justify-content-around mx-auto mb-3">
+									<label class="col-md-3"><FONT SIZE=4>Posición:</FONT></label>
+									<input type="number" class="col-md-8 " value=0.00 id="linealAbsPosValue">
+								</div>
+								<div class="form-inline d-flex justify-content-around mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Velocidad:</FONT></label>
+									<input type="number" class="col-md-8" value=0.00 id="linealAbsVelocityValue">
+								</div>			
+							</div>
+							<div class="col align-self-center text-center mb-3">
+								<button class="btn btn-primary btn-lg" id="linealAbsMove"  cmd={{ mov_to_pos }} eje={{ id_eje_avance }}>Mover</button>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+			<div class="col align-self-center my-4 text-center mb-3">
+				<button class="btn btn-danger detener" style="height: 55px" id="linealStop" cmd={{ stop }} eje={{ id_eje_avance }}><FONT SIZE=5>Detener</FONT></button>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+
+	
+	<div id="contenedorCabezal" class="col-md-5 col-12 mb-5 float-left ml-md-2 border shadow rounded bg-white p-2">
+		<div class="container-fluid">
+			<div class="row justify-content-center" style="color: black;">
+				<h4><u>Cabezal</u></h4>
+			</div>
+			<div class="row justify-content-center mb-3">
+				<div id="accordionCabezal" class="w-100">
+					<div class="card">
+
+
+
+						<!-- cabezal on/off -->
+
+						<div class="card-header " style="height: 91px;padding-left: 30px;">
+							<div class="enables">
+							<button type="button" class="btn btn-primary btn-lg" eje={{ id_eje_carga }} cmd={{ power_on }} id="onCabezal" style="margin-bottom: 90px" >ON</button>	
+							<label class="box box-grey" id="cabezalEnable"><FONT SIZE=4>Enable</FONT></label>
+							<button type="button" class="btn btn-danger btn-lg" eje={{ id_eje_carga }} cmd={{ power_off }} id="offCabezal" style="margin-bottom: 90px" >Off</button>
+							</div>	
+						</div>
+						
+						<!-- cabezal on/off -->
+
+
+
+						<div class="card-header" id="headingOneCabezal">
+							<h5 class="mb-0">
+								<button class="btn btn-link font-weight-bold" data-toggle="collapse" data-target="#collapseTwoRelativa" aria-expanded="true" aria-controls="collapseTwoRelativa">
+									Posición RELATIVA
+								</button>
+							</h5>
+						</div>
+						<div id="collapseTwoRelativa" class="collapse" aria-labelledby="headingOneCabezal" data-parent="#accordionCabezal" style="color: black;">
+							<div class="card-body mb-1">
+								<div class="form-inline d-flex justify-content-around mb-3 mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Ángulo:</FONT></label>
+									<input type="number" class="col-md-8" id="cabezalRelPosValue" value=0.00>
+								</div>
+								<div class="form-inline d-flex justify-content-around mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Velocidad:</FONT></label>
+									<input type="number" class="col-md-8" id="cabezalRelVelocityValue" value=0.00>
+								</div>		
+							</div>
+							<div class="align-self-center text-center mb-3">
+								<button class="btn btn-primary btn-lg" id="cabezalAdd" eje={{ id_eje_carga }} cmd={{ mov_to_pos }}>+</button>
+								<button class="btn btn-secondary btn-lg" id="cabezalSubtract" eje={{ id_eje_carga }} cmd={{ mov_to_pos }}>-</button>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwoCabezal">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed font-weight-bold" data-toggle="collapse" data-target="#collapseTwoAbsoluta" aria-expanded="false" aria-controls="collapseTwoAbsoluta">
+									Posición ABSOLUTA
+								</button>
+							</h5>
+						</div>
+						<div id="collapseTwoAbsoluta" class="collapse show" aria-labelledby="headingTwoCabezal" data-parent="#accordionCabezal" style="color: black;">
+							<div class="card-body">
+								<div class="form-inline d-flex justify-content-around mb-3 mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Ángulo:</FONT></label>
+									<input type="number" class="col-md-8" value=0.00 id="cabezalAbsAngleValue">
+								</div>
+								<div class="form-inline d-flex justify-content-around mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>Velocidad:</FONT></label>
+									<input type="number" class="col-md-8" value=0.00 id="cabezalAbsVelocityValue">
+								</div>		
+							</div>
+							<div class="col align-self-center text-center mb-3">
+								<button class="btn btn-primary btn-lg" id="cabezalAbsMove" cmd={{ mov_to_pos }} eje={{ id_eje_carga }}>Girar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="col align-self-center my-4 text-center mb-3">
+					<button class="btn btn-danger detener" style="height: 55px" id="cabezalStop" cmd={{ stop }} eje={{ id_eje_carga }}><FONT SIZE=5>Detener</FONT></button>
+				</div>
+		</div>
+	</div>
+
+
+
+
+	<div id="contenedorHusillo" class="col-md-5 col-12 mb-5 float-left ml-md-2 border shadow rounded bg-white p-2">
+		<div class="container-fluid">
+			<div class="row justify-content-center" style="color: black;">
+				<h4><u>Husillo</u></h4>	
+			</div>
+			<div class="row justify-content-center mb-3">
+				<div id="accordionHusillo" class="w-100">
+					<div class="card" style="height: 402px;">
+
+
+							<!-- husillo on/off -->
+
+							<div class="card-header" style="height: 91px;padding-left: 30px;">
+								<div class="enables">
+								<button type="button" class="btn btn-primary btn-lg" eje={{ id_eje_giro }} cmd={{ power_on }} id="onHusillo" style="margin-bottom: 90px" >ON</button>	
+								<label class="box box-grey" id="husilloEnable"><FONT SIZE=4>Enable</FONT></label>
+								<button type="button" class="btn btn-danger btn-lg" eje={{ id_eje_giro }} cmd={{ power_off }} id="offHusillo" style="margin-bottom: 90px" >Off</button>
+								</div>
+							</div>
+
+							<!-- husillo on/off -->
+
+
+
+							<div class="card-header" id="headingOne">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed font-weight-bold" data-toggle="collapse" data-target="#collapseOneHusillo" aria-expanded="false" aria-controls="collapseOneHusillo">
+									HUSILLO
+								</button>							
+							</h5>
+						</div>
+						<div id="collapseOneHusillo" class="collapse show" aria-labelledby="headingOneHusillo" data-parent="#accordionHusillo" style="color: black;"></div>
+							<div class="card-body mb-1">
+								<div class="form-inline d-flex justify-content-around mb-3 mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>RPM:</FONT></label>
+									<input type="number" class="col-md-8" id="rpmValue" value=0.00>
+								</div>
+
+
+
+								<!-- husillo sync -->
+
+								<div class="enable-sync">
+									<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 54px" cmd={{ sync_on }} style="margin-left: 10px;" id="onSync" >ON</button>	
+									<label class="box box-grey" id="husilloSync" style="margin-bottom: 7px"><FONT SIZE=4>Sync</FONT></label>
+									<button type="button" class="btn btn-danger btn-lg" style="margin-bottom: 54px" cmd={{ sync_off }} id="offSync" >Off</button>								
+								</div>
+	
+								<!-- husillo sync -->
+								
+
+
+								<div class="form-inline d-flex justify-content-around mb-3 mx-auto">
+									<label class="col-md-3"><FONT SIZE=4>PASO:</FONT></label>
+									<input type="number" class="col-md-8" id="pasoValue" value=0.00>
+								</div>	
+							</div>
+							<div class="col align-self-center text-center mb-3">
+								<button class="btn btn-primary btn-lg" id="husilloMove" cmd={{ mov_to_vel }} eje={{ id_eje_giro }}>Girar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col align-self-center text-center my-4 mb-3">
+				<button class="btn btn-danger detener" style="height: 55px" id="husilloStop" cmd={{ stop }} eje={{ id_eje_giro }}><FONT SIZE=5>Detener</FONT></button>
+			</div>
+		</div>	
+	</div>
+
+</div>
+
+<script src="{% static 'js/motoresManual.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static %}
+{% block content %}
+
+<head>
+	<script src="{% static 'js/monitorHorizontal.js' %}"></script>
+</head>
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.1"></script>
+	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+	<script src="../static/zoomplugin/chartjs-plugin-zoom.min.js"></script>
+</body>
+
+
+
+<TABLE FRAME="border" RULES="none" BORDER=5 class="card bg-c-grey text-white py-1" width="300" height="60">
+	<TR><TH><article class="text-left">RPM</article></TH>
+		<TD> </TD> <TD> </TD> <TD><article id="frRPMH">00.0</article></TD></TR>
+        <TR><TH><article class="text-left">Torque</article></TH>
+		<TD></TD> <TD> </TD> <TD><article id="fTorqueH">00.0</article> </TD></TR>
+</TABLE>
+
+
+<TABLE FRAME="border" RULES="none" BORDER=5 class="card bg-c-pink text-white py-1" width="300" height="60">
+	<TR><TH><article class="text-left">Pos.Vertical[mm]</article></TH>
+		<TD> </TD> <TD> </TD> <TD><article id="posVerticalH">00.0</article></TD></TR>
+        <TR><TH><article class="text-left">Velocidad[mm/s]</article></TH>
+		<TD></TD> <TD> </TD> <TD><article id="velVerticalH">00.0</article> </TD></TR>
+</TABLE>
+ 
+
+<TABLE FRAME="border" RULES="none" BORDER=5 class="card bg-c-blue text-white py-1" width="300" height="60">
+	<TR><TH><article class="text-left">Pos.Horizontal[mm]</article></TH>
+		<TD> </TD> <TD> </TD> <TD><article id="posHorizontalH">00.0</article></TD></TR>
+        <TR><TH><article class="text-left">Velocidad[mm/s]</article></TH>
+		<TD></TD> <TD> </TD> <TD><article id="velHorizontalH">00.0</article> </TD></TR>
+</TABLE>
+
+<script src="{% static 'js/monitorHorizontal.js' %}"></script>
+{% endblock %}

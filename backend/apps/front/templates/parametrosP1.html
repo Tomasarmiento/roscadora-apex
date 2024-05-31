@@ -1,0 +1,359 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="col-md-10 d-flex justify-content-around mx-auto my-3 px-0" style="color: black;"> 
+    <div class="card p-1 mb-3">
+        <form action="{% url 'parameters-update' %}" method="POST" id={{1}}>
+            {% csrf_token%}
+            <table class="table table-sm table-striped table-borderless" style="color: black;" id="tablaCuplaModelo1">
+                <thead>
+                    <tr>
+                        <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Datos proceso Cupla Modelo 1
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Concepto</th>
+                        <!-- <th>Descripcion</th> -->
+                        <th style="text-align: center">Valor</th>
+                        <th>Unidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>paso_de_rosca</td>
+                        <td>Descripcion</td>
+                        <td>
+                            {% for parameter in object_list %}
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="paso_de_rosca" placeholder="{{ parameter.value }}">
+                            {% endfor %}
+                        </td>
+                        <td>mm/v</td>
+                    </tr>
+                    <tr>
+                        <td>posicion_de_aproximacion</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_aproximacion" >
+                        </td>
+                        <td>mm</td>
+                    </tr>
+                    <tr>
+                        <td>velocidad_en_vacio</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_en_vacio" >
+                        </td>
+                        <td>mm/seg</td>
+                    </tr>
+                    <tr>
+                        <td>posicion_final_de_roscado</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_final_de_roscado" >
+                        </td>
+                        <td>mm</td>
+                    </tr>
+                    <tr>
+                        <td>velocidad_de_roscado</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_roscado" >
+                        </td>
+                        <td>mm/seg</td>
+                    </tr>
+                    <tr>
+                        <td>posicion_salida_de_roscado</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_salida_de_roscado" >
+                        </td>
+                        <td>mm</td>
+                    </tr>
+                    <tr>
+                        <td>velocidad_de_retraccion</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_retraccion" >
+                        </td>
+                        <td>mm/seg</td>
+                    </tr>
+                    <tr>
+                        <td>posicion_de_inicio</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_inicio" >
+                        </td>
+                        <td>mm</td>
+                    </tr>
+                    <tr>
+                        <td>torque_tolerado</td>
+                        <td>Descripcion</td>
+                        <td>
+                            <input class="form-control-xs" type="number" step=0.01 value="" name="torque_tolerado" >
+                        </td>
+                        <td>Nm</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="hidden" name="part_model" value="1">
+            <input type="submit" value="" class="d-none">
+        </form>
+    </div>
+
+
+    <div class="card p-1 mb-3">
+    <form action="{% url 'parameters-update' %}" method="post" id="{{2}}">
+        {% csrf_token%}
+        <table class="table table-sm table-striped table-borderless" style="color: black;" id="tablaCuplaModelo2">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Datos proceso Cupla Modelo 2
+                    </th>
+                </tr>
+                <tr>
+                    <th>Concepto</th>
+                    <!-- <th>Descripcion</th> -->
+                    <th>Valor</th>
+                    <th>Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>paso_de_rosca</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="paso_de_rosca" >
+                    </td>
+                    <td>mm/v</td>
+                </tr>
+                <tr>
+                    <td>posicion_de_aproximacion</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_aproximacion" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_en_vacio</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_en_vacio" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_final_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_final_de_roscado" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_roscado" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_salida_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_salida_de_roscado" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_de_retraccion</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_retraccion" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_de_inicio</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_inicio" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>torque_tolerado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="torque_tolerado" >
+                    </td>
+                    <td>Nm</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="part_model" value="2">
+        <input type="submit" value="" class="d-none">
+    </form>
+    </div>
+</div>   
+
+<div class="card  mx-auto my-3 py-1 px-1 float-left" style="color: black; left: 125px;">
+    <form action="{% url 'parameters-update' %}" method="post" id="{{3}}">
+        {% csrf_token%}
+        <table class="table table-sm table-striped table-borderless" style="color: black;" id="tablaCuplaModelo3">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Datos proceso Cupla Modelo 3
+                    </th>
+                </tr>
+                <tr>
+                    <th>Concepto</th>
+                    <!-- <th>Descripcion</th> -->
+                    <th>Valor</th>
+                    <th>Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>paso_de_rosca</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="paso_de_rosca" >
+                    </td>
+                    <td>mm/v</td>
+                </tr>
+                <tr>
+                    <td>posicion_de_aproximacion</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_aproximacion" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_en_vacio</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_en_vacio" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_final_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_final_de_roscado" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_roscado" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_salida_de_roscado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_salida_de_roscado" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>velocidad_de_retraccion</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="velocidad_de_retraccion" >
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>posicion_de_inicio</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="posicion_de_inicio" >
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>torque_tolerado</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="torque_tolerado" >
+                    </td>
+                    <td>Nm</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="part_model" value="3">
+        <input type="submit" value="" class="d-none">
+    </form>
+    
+</div>
+<div class="card  mx-auto my-3 py-1 px-1 float-left" style="color: black; left: 180px;">
+    <form action="{% url 'parameters-update' %}" method="post" id="{{3}}">
+        {% csrf_token %}
+        <table class="table table-sm table-striped table-borderless" style="color: black;" id="tablaCuplaAllModels">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; background-color: #52D5DA; color:black; border-top-right-radius: 8px; border-top-left-radius: 8px;">Datos proceso Cuplas
+                    </th>
+                </tr>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Descripcion</th>
+                    <th>Valor</th>
+                    <th>Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>position_positive_7</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="position_positive_7">
+                    </td>
+                    <td>mm/v</td>
+                </tr>
+                <tr>
+                    <td>position_mid_low</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="position_mid_low">
+                    </td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>position_mid_high</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="position_mid_high">
+                    </td>
+                    <td>mm/seg</td>
+                </tr>
+                <tr>
+                    <td>position_negative_7</td>
+                    <td>Descripcion</td>
+                    <td>
+                        <input class="form-control-xs" type="number" step=0.01 value="" name="position_negative_7">
+                    </td>
+                    <td>mm</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="part_model" value="3">
+        <input type="submit" value="" class="d-none">
+    </form>
+    
+</div>
+<div class="row justify-content-center container-fluid">
+    <div class="col-md-12 text-right justify-content-center" style="bottom: 63px;right: 70px;">
+        <a type="button" class="btn btn-primary btn-lg" href="{% url 'home' %}">Volver</a>
+    </div>
+</div>
+{% endblock %}

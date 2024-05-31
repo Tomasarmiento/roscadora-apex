@@ -1,0 +1,212 @@
+{% extends 'indexNoData.html'%}
+{% load static %}
+{% block content %}
+<head>
+ <script src="{% static 'js/automatico.js' %}"></script>
+ 
+    <style>
+		canvas {
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+		body {
+			overflow-y: scroll;
+		}
+		</style>
+</head>
+<!-- <style type="text/css">
+    body {
+        overflow: hidden;
+    }
+</style> -->
+
+
+<body>
+    
+    <script src="../static/zoomplugin/ajax.js"></script>
+    <script src="../static/zoomplugin/chart.js"></script>
+    <script src="../static/zoomplugin/hammer.js"></script>
+    <script src="../static/zoomplugin/chartjs-plugin-zoom.min.js"></script>
+
+
+
+    <div id="accelContainer" class="col-10">
+        <div id="xAccel" class="x">
+            <canvas id="xAccelChart" style="min-width: 450px;" class="border border-primary"></canvas>
+        </div><!--xAccel-->
+    </div> 
+    
+    
+    
+    
+    <!-- <div id="resetZoomDiv">
+        <button type="button" class=" btn-primary btn-lg mb-3" style="float: right;margin-right: 10px;" id="resetZoom">Reset</button>
+        <button type="button" class=" btn-primary btn-lg mb-3" style="float: right;margin-right: 10px;" id="destroy">Destroy</button>
+    </div>  -->
+    <button id="resetLittleZoom" type="button" style="margin-left: 87px;bottom: 50px;">Reset Zoom</button>
+    <button id="freezeGraph" type="button" style="bottom: 50px;">Freeze</button>
+    
+    <div class="col-md-8 col-12 float-left mb-8 px-0">
+        <div class="col-md-12 my-2 py-1 d-flex justify-content-around" id="contenedor-continuarDetener" style="bottom: 23px;">
+            <h3 class="text-center text-black" style="margin-top: 15px;">Proceso Automatico</h3>
+            <button type="button" class="btn btn-primary mb-3" style="min-width: 205px; height: 55px;margin-left: 10px; margin-top: 8px;" id="continue"><FONT SIZE=5>Continuar</FONT></button>
+            <button type="button" class="btn btn-danger mb-3 detener" style="min-width: 205px; height: 55px;margin-left: 10px; margin-top: 8px;" id="stop" cmd="{{ stop_all }}"><FONT SIZE=5>Detener</FONT></button>
+            <button type="button" class="btn btn-warning mb-3" style="min-width: 205px; height: 55px;margin-left: 10px; margin-top: 8px;" id="cancel"><FONT SIZE=5>Terminar</FONT></button>
+            <div style="margin-top: 13px;">
+                <h6 id="max_torque_lineal">Torque lineal:</h6>
+                <h6 id="max_torque_husillo">Torque husillo:</h6>
+            </div>
+        </div>
+        <div class="col-12 mb-3 d-inline-flex" style="bottom: 42px;height: 405px;">
+		<div class="card p-1 mb-3">
+            <form action="{% url 'parameters' %}" method="post" id="id={{3}}">
+                {% csrf_token%}
+                <table class="table table-sm table-striped table-borderless" style="color: black;" id="tablaCuplaModelo3">
+                    <thead>
+                        <tr>
+                            <td>modelo</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ modelo }}" name="modelo" disabled>
+                            </td>
+                            <td>-</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>paso_de_rosca</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ paso_de_rosca }}" name="paso_de_rosca" disabled>
+                            </td>
+                            <td>mm/v</td>
+                        </tr>
+                        <tr>
+                            <td>posicion_de_aproximacion</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ posicion_de_aproximacion }}" name="posicion_de_aproximacion" disabled>
+                            </td>
+                            <td>mm</td>
+                        </tr>
+                        <tr>
+                            <td>velocidad_en_vacio</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ velocidad_en_vacio }}" name="velocidad_en_vacio" disabled>
+                            </td>
+                            <td>mm/seg</td>
+                        </tr>
+                        <tr>
+                            <td>posicion_final_de_roscado</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ posicion_final_de_roscado }}" name="posicion_final_de_roscado" disabled>
+                            </td>
+                            <td>mm</td>
+                        </tr>
+                        <tr>
+                            <td>velocidad_de_roscado</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ velocidad_de_roscado }}" name="velocidad_de_roscado" disabled>
+                            </td>
+                            <td>mm/seg</td>
+                        </tr>
+                        <tr>
+                            <td>posicion_salida_de_roscado</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ posicion_salida_de_roscado }}" name="posicion_salida_de_roscado" disabled>
+                            </td>
+                            <td>mm</td>
+                        </tr>
+                        <tr>
+                            <td>velocidad_de_retraccion</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ velocidad_de_retraccion }}" name="velocidad_de_retraccion" disabled>
+                            </td>
+                            <td>mm/seg</td>
+                        </tr>
+                        <tr>
+                            <td>posicion_de_inicio</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ posicion_de_inicio }}" name="posicion_de_inicio" disabled>
+                            </td>
+                            <td>mm</td>
+                        </tr>
+                        <tr>
+                            <td>torque_tolerado</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ torque_tolerado }}" name="torque_tolerado" disabled>
+                            </td>
+                            <td>Nm</td>
+                        </tr>
+                        <tr>
+                            <td>soluble_intermitente</td>
+                            <td></td>
+                            <td>
+                                <input class="form-control-xs" type="number" step=0.01 value="{{ soluble_intermitente }}" name="soluble_intermitente" disabled>
+                            </td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="" class="d-none">
+            </form>
+        </div>
+      <!-- <button type="button"  id="exitTapping" class="btn btn-primary btn-lg" style="width: 20%;height: 20%;margin-top: 10%;margin-left: 10%;">Salir Roscando</button> -->
+
+    </div>
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Error rutina Descarga</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3 id="exampleModalLabelText" style="color: black;">Cupla no paso por tobogan de descarga</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="col-md-4 d-flex justify-content-around  my-3 px-0" style="color: black;right: 220px;height: 420px;top: 35px;">
+    <div class="col-md-12 mb-2 float-left justify-content-around px-1" style="right: 112px;bottom: 9px;height: 412px;min-width: 540px;">
+        <div id="contenedor-terminal-texto" class="card col-md-12 my-4 mx-auto border shadow rounded bg-white p-1" style="height: 155px;bottom: 35px;">
+            <div id="salidaDeTexto"></div>
+            {% include 'cuadroDeTexto.html' %}
+        </div>
+        
+        <div id="contenedor-terminal-texto-errores" class="card col-md-12 my-4 mx-auto border shadow rounded bg-white p-1" style="height: 155px;bottom: 35px;">
+            <div id="salidaDeTextoErrores"></div>
+            {% include 'cuadroDeErrores.html' %}
+        </div>
+    </div>
+    <div class="col-md-6 col-12   border shadow rounded bg-white  px-1 py-1" style="bottom:316px;right: 85px;height: 652px;">
+        {% include 'monitorComponent.html' %}
+        <div id="component-monitor"></div>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'js/stopAll.js' %}"></script>
+    </body>
+    {% endblock %}

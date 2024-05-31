@@ -1,0 +1,410 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+<script src="{% static 'js/logAlarma.js' %}"></script>
+
+<div class="row align-items-center d-flex justify-content-around mx-auto px-0" style="color: black;">
+    <div id="contenedorNeumatica" class="col-md-3 col-12 mb-5 card rounded p-2 mx-auto shadow-sm text-black" style="bottom: 369px;">
+        <div class="contanier-fluid">
+            <div class="card-header text-center">
+                <div class="col-12" style="color: black;">
+                    <h4>Carga</h4>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4 text-center inblock-center">Horizontal</p>
+                </div>
+                <div class="col text-center di-position-left-btn" >
+                    <button class="btn btn-primary buton-width" id="horizontalCargaXOn" menu="carga" cmd= {{ rem_do_set }}> Adelante </button>
+                    <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="horizontalCargaXOff" menu="carga" cmd= {{ rem_do_set }}> Atrás </button>
+                </div>
+                <div class="col text-center" >
+                    <article class="led led-grey" style="margin-top: 6px;" id="horizontalCargaAdelanteOk"></article>
+                    <article class="led led-grey" style="margin-top: 24px;" id="horizontalCargaAtrasOk"></article>
+                </div>
+                <div class="col text-center di-position" >
+                    <label class="di-position-top-btn"><FONT SIZE=4>4 on-3 off</FONT></label>
+                    <label class="di-position-bot-btn"><FONT SIZE=4>4 off-3 on</FONT></label>
+                </div>
+            </div>
+            <hr size="100px" style="width: 100%;" color="grey">
+            <div class="row mt-3">
+                <div class="col-md-4 text-center inblock-center">
+                    <p style="display: inline;margin-top: 15px;">Vertical</p>
+                </div>
+                <div class="col text-center di-position-left-btn" >
+                    <button class="btn btn-primary buton-width" id="verticalCargaXOn" menu="carga" cmd= {{ rem_do_set }}> Arriba </button>
+                    <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="verticalCargaXOff" menu="carga" cmd= {{ rem_do_set }}> Abajo </button>
+                </div>
+                <div class="col text-center" >
+                    <article class="led led-grey" style="margin-top: 6px;" id="verticalCargaArribaOk"></article>
+                    <article class="led led-grey" style="margin-top: 24px;" id="verticalCargaAbajoOk"></article>
+                </div>
+                <div class="col text-center di-position" >
+                    <label class="di-position-top-btn"><FONT SIZE=4>15 on</FONT></label>
+                    <label class="di-position-bot-btn"><FONT SIZE=4>15 off</FONT></label>
+                </div>
+            </div>  
+            <hr size="100px" style="width: 100%;" color="grey">
+            <div class="row mt-3">
+                <div class="col-md-4 text-center inblock-center">
+                    <p style="display: inline">Boquilla Carga</p>
+                </div>
+                <div class="col text-center di-position-left-btn" >
+                    <button class="btn btn-primary buton-width" id="BoquillaCargaXOn" menu="carga" cmd= {{ rem_do_set }}> Cierra </button>
+                    <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="BoquillaCargaXOff" menu="carga" cmd= {{ rem_do_set }}> Abre </button>
+                </div>
+                <div class="col text-center" >
+                    <article class="led led-grey" style="margin-top: 6px;" id="boquillaCargaCierraOk"></article>
+                    <article class="led led-grey" style="margin-top: 24px;" id="boquillaCargaAbreOk"></article>
+                </div>
+                <div class="col text-center di-position" >
+                    <label class="di-position-top-btn"><FONT SIZE=4>13 on</FONT></label>
+                    <label class="di-position-bot-btn"><FONT SIZE=4>13 off</FONT></label>
+                </div>
+            </div>
+            <hr size="100px" style="width: 98%;" color="grey">
+            <div class="row mt-3">
+                <div class="col-md-4 text-center inblock-center">
+                    <p style="display: inline;">Giro</p>
+                </div>
+                <div class="col text-center di-position-left-btn"  >
+                    <button class="btn btn-primary buton-width" id="giroCargaXOn" menu="carga" cmd= {{ rem_do_set }}> Arriba </button>
+                    <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="giroCargaXOff" menu="carga" cmd= {{ rem_do_set }}> Abajo </button>
+                </div>
+                <div class="col text-center" >
+                    <article class="led led-grey" style="margin-top: 6px;" id="giroCargaArribaOk"></article>
+                    <article class="led led-grey" style="margin-top: 24px;" id="giroCargaAbajoOk"></article>
+                </div>
+                <div class="col text-center di-position" >
+                    <label class="di-position-top-btn"><FONT SIZE=4>6 off-5 on</FONT></label>
+                    <label class="di-position-bot-btn"><FONT SIZE=4>6 on-5 off</FONT></label>
+                </div>
+            </div>
+            
+            </div>  
+        </div>
+        
+            <div id="contenedorNeumatica" class="col-md-3 col-12 mb-5 card rounded p-2 mx-auto shadow-sm text-black" style="bottom: 249px;">
+                <div class="contanier-fluid">
+                    <div class="card-header text-center">
+                        <div class="col-12">
+                            <h4>Descarga</h4>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Horizontal</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width"  id="horizontalDescXOn"  menu="descarga" cmd= {{ rem_do_set }}> Adelante </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="horizontalDescXOff"  menu="descarga" cmd= {{ rem_do_set }}> Atrás </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="horizontalDescAtrasOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="horizontalDescAdelanteOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>2 on-1 off</FONT></label>
+                            <label class="di-position-bot-btn"><FONT SIZE=4>2 off-1 on</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Giro</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="giroDescXOn"  menu="descarga" cmd= {{ rem_do_set }}> Arriba </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="giroDescXOff"  menu="descarga" cmd= {{ rem_do_set }}> Abajo </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="giroDescArribaOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="giroDescAbajoOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>8 off-7 on</FONT></label>
+                            <label class="di-position-bot-btn"><FONT SIZE=4>8 on-7 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Boquilla Descarga</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="BoquillaDescXOn"  menu="descarga" cmd= {{ rem_do_set }}> Cierra </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="BoquillaDescXOff"  menu="descarga" cmd= {{ rem_do_set }}> Abre </button> 
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="boquillaDescCierraOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="boquillaDescAbreOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>11 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>11 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Horizon Gripper</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="horizontalGrXOn" menu="descarga" cmd= {{ rem_do_set }}> Adelante </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="horizontalGrXOff" menu="descarga" cmd= {{ rem_do_set }}> Atrás </button> 
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="horizontalGrAdelanteOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="horizontalGrAtrasOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>17 on-20 off</FONT></label>
+                            <label class="di-position-bot-btn"><FONT SIZE=4>17 off-20 on</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Vertical Gripper</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="verticalGrXOff" menu="descarga" cmd= {{ rem_do_set }}> Arriba </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="verticalGrXOn" menu="descarga" cmd= {{ rem_do_set }}> Abajo </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="verticalGrArribaOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="verticalGrAbajoOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>19 off-18 on</FONT></label>
+                            <label class="di-position-bot-btn"><FONT SIZE=4>19 on-18 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Gripper Descarga</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="gripperDescXOn"  menu="descarga" cmd= {{ rem_do_set }}> Cierra </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="gripperDescXOff"  menu="descarga" cmd= {{ rem_do_set }}> Abre </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="gripperDescCierraOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="gripperDescAbreOk"></article>
+                        </div>
+                        <div class="col text-center di-position" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>10 off-9 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>10 on-9 off</FONT></label>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            
+            
+            <div id="contenedorNeumatica" class="col-md-3 col-12 mb-5 card rounded p-2 mx-auto my-3 shadow-sm text-black" >
+                <div class="contanier-fluid">
+                    <div class="card-header text-center">
+                        <div class="col-12">
+                            <h4>Cabezal</h4>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center" style="padding-left: 1px;padding-right: 10px;">
+                            <p style="display: inline;">Cerramiento</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="cerramientoXOn" menu="cabezal" cmd= {{ rem_do_set }}> Adelante </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="cerramientoXOff" menu="cabezal" cmd= {{ rem_do_set }}> Atras </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="cerramientoSiOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="cerramientoNoOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>12 off</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>12 on</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Clampeo</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="clampeoXOn" menu="cabezal" cmd= {{ rem_do_set }}> SI </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="clampeoXOff" menu="cabezal" cmd= {{ rem_do_set }}> NO </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="clampeoSiOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="clampeoNoOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>22 off-23 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>22 on-23 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Presión</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="presionXOn" menu="cabezal" cmd= {{ rem_do_set }}> SI </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="presionXOff" menu="cabezal" cmd= {{ rem_do_set }}> NO </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="presionSiOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="presionNoOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>26 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>26 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Boquilla 1</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="boquilla1XOn" menu="cabezal" cmd= {{ rem_do_set }}> Cierra </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="boquilla1XOff" menu="cabezal" cmd= {{ rem_do_set }}> Abre </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 15px;" id="boquilla1XOffOff" menu="cabezal" cmd= {{ rem_do_set }}> Off </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="boquilla1CierraOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="boquilla1AbreOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>28 off-27 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>28 on-27 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Boquilla 2</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn"  >
+                            <button class="btn btn-primary buton-width" id="boquilla2XOn" menu="cabezal" cmd= {{ rem_do_set }}> Cierra </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="boquilla2XOff" menu="cabezal" cmd= {{ rem_do_set }}> Abre </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 15px;" id="boquilla2XOffOff" menu="cabezal" cmd= {{ rem_do_set }}> Off </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="boquilla2CierraOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="boquilla2AbreOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>30 off-29 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>30 on-29 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Boquilla 3</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn">
+                            <button class="btn btn-primary buton-width" id="boquilla3XOn" menu="cabezal" cmd= {{ rem_do_set }}> Cierra </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="boquilla3XOff" menu="cabezal" cmd= {{ rem_do_set }}> Abre </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 15px;" id="boquilla3XOffOff" menu="cabezal" cmd= {{ rem_do_set }}> Off </button>
+                        </div>
+                        <div class="col text-center">
+                            <article class="led led-grey" style="margin-top: 6px;" id="boquilla3CierraOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="boquilla3AbreOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal">
+                            <label class="di-position-top-btn"><FONT SIZE=4>32 off-31 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>32 on-31 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Acopla Soluble</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="acoplaSolXOn" menu="cabezal" cmd= {{ rem_do_set }}> SI </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="acoplaSolXOff" menu="cabezal" cmd= {{ rem_do_set }}> NO </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="acoplaSolSiOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="acoplaSolNoOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>21 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>21 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Bomba Soluble</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="bombaSolXOn" menu="cabezal" cmd= {{ rem_do_set }}> ON </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="bombaSolXOff" menu="cabezal" cmd= {{ rem_do_set }}> OFF </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="bombaSolOnOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="bombaSolOffOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>25 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>25 off</FONT></label>
+                        </div>
+                    </div>
+                    <hr size="100px" style="width: 98%;" color="grey">
+                    <div class="row mt-3" style="margin-right: 5px;">
+                        <div class="col-md-4 text-center inblock-center">
+                            <p style="display: inline;">Bomba Hidraulica</p>
+                        </div>
+                        <div class="col text-center di-position-left-btn" >
+                            <button class="btn btn-primary buton-width" id="bombaHidrXOn" menu="cabezal" cmd= {{ rem_do_set }}> ON </button>
+                            <button class="btn btn-primary buton-width" style="margin-top: 10px;" id="bombaHidrXOff" menu="cabezal" cmd= {{ rem_do_set }}> OFF </button>
+                        </div>
+                        <div class="col text-center" >
+                            <article class="led led-grey" style="margin-top: 6px;" id="bombaHidrOnOk"></article>
+                            <article class="led led-grey" style="margin-top: 24px;" id="bombaHidrOffOk"></article>
+                        </div>
+                        <div class="col text-center di-position-cabezal" >
+                            <label class="di-position-top-btn"><FONT SIZE=4>24 on</FONT></label> 
+                            <label class="di-position-bot-btn"><FONT SIZE=4>24 off</FONT></label>
+                        </div>
+                    </div>   
+                </div>  
+            </div>
+        <!-- tiene none para poder pushiar los datos al hash de alarma -->
+        <div id="contenedor-terminal-texto-errores" class="card col-md-12 text-left my-4 mx-auto border shadow rounded bg-white p-1" style="display: none;">
+            <div id="salidaDeTextoErrores"></div>
+            {% include 'cuadroDeErrores.html' %}
+        </div>
+<!-- muestra boton -->
+{% if user.is_authenticated %}
+<div class="col-md-2 col-12 mb-5 float-right border shadow rounded bg-white  px-1 py-1" style="bottom:280px;right: 10px;">
+    {% include 'monitorComponent.html' %}
+    <div id="component-monitor"></div>
+    <div class="py-2 d-flex justify-content-around" id="contenedor-enter-safe">
+        <button class="btn btn-warning text-center" id="exit_safe_modeXOff" menu="exit_safe_mode" cmd="exit_safe_mode" > Exit safe mode </button>
+        <button class="btn btn-success text-center"  id="enter_safe_modeXOn" menu="enter_safe_mode" cmd="enter_safe_mode" > Enter safe mode </button>
+    </div>
+    <div class="led led-grey" id="mode_indicator"></div>
+</div>
+
+
+{% else %}
+
+<!-- no muestra boton -->
+<div class="col-md-2 col-12 mb-5 float-right border shadow rounded bg-white  px-1 py-1" style="bottom:318px;right: 10px;">
+    {% include 'monitorComponent.html' %}
+    <div id="component-monitor"></div>
+</div>
+{% endif %}
+
+
+<script src="{% static 'js/neumaticaManual.js' %}"></script>
+{% endblock %}

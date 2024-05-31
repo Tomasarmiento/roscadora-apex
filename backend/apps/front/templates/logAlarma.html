@@ -1,0 +1,43 @@
+{% extends 'indexNoData.html'%}
+{% load static %}
+{% block content %}
+
+
+<div class="col-md-5 d-flex my-3 px-0" style="color: black;left: 100px;">
+    <div class="col-md-5 my-4 reset-container">
+        <button type="button" class="btn btn-primary mb-3"id="limpiarLogAlarma">
+            <FONT SIZE=5>Limpiar log Alarma</FONT>
+        </button>
+        <button type="button" class="btn btn-primary mb-3"id="limpiarLogMensajes">
+            <FONT SIZE=5>Limpiar log Mensajes</FONT>
+        </button>
+    </div>
+    <div id="contenedor-terminal-texto-errores" class="card col-md-12 text-left my-4 mx-auto border shadow rounded bg-white p-1" style="height: auto;">
+        <div id="salidaDeTextoErrores"></div>
+        {% include 'cuadroDeErrores.html' %}
+    </div>
+    <div id="contenedor-continuarDetener" class="col-md-3 col-12 text-center my-4">
+        <button type="button" class="btn btn-success mb-3" style="min-width: 205px; min-height: 65px" id="servoCarga" axis_id={{ carga }} cmd={{ reset_drv_faults_cmd }}>
+            <FONT SIZE=5>Reset servo carga</FONT>
+        </button>
+        <button type="button" class="btn btn-success mb-3" style="min-width: 205px; min-height: 65px" id="servoGiro" axis_id={{ giro }} cmd={{ reset_drv_faults_cmd }}>
+            <FONT SIZE=5>Reset servo giro</FONT>
+        </button>
+        <button type="button" class="btn btn-success mb-3" style="min-width: 205px; min-height: 65px" id="servoAvance" axis_id={{ avance }} cmd={{ reset_drv_faults_cmd }}>
+            <FONT SIZE=5>Reset servo avance</FONT>
+        </button>
+        
+        <div class="text-center justify-content-center my-4">
+            <a type="button" class="btn btn-primary btn-lg" style="min-width: 205px; min-height: 65px" href="javascript:history.back()"><FONT SIZE=5>Volver</FONT></a>
+        </div>
+        
+    </div>
+    <div id="contenedor-resetState" class="col-md-2 col-12 text-center my-5"style="left: 100px;">
+        <div class="square mb-5 bc-success" id="squareCarga"></div>
+        <div class="square mb-5 bc-success" id="squareGiro"></div>
+        <div class="square mb-5 bc-success" id="squareAvance"></div>
+    </div>
+</div>
+
+<script src="{% static 'js/logAlarma.js' %}"></script>
+{% endblock %}

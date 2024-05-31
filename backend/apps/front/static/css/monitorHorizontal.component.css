@@ -1,0 +1,16 @@
+.bg-c-pink {
+    background: linear-gradient(45deg, #ff5370, #ff869a);
+  }
+  
+  .bg-c-blue {
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+  }
+  
+  .bg-c-grey {
+    background: linear-gradient(45deg, #8d8d90, #cbcbcd);
+  }
+  
+  article[title] {
+    background-color: black;
+  }
+  

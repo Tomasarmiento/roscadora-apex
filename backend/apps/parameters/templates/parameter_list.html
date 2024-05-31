@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Parameter</h1>
+<ul>
+{% for parameter in object_list %}
+    <li>{{ parameter.name }} : {{ parameter.value }} {{ parameter.unit }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}

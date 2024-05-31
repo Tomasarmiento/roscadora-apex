@@ -1,0 +1,18 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="container col-sm-3 d-flex align-items-center my-5" id="login-Container">
+    <form method="post" class="form-signin card my-auto shadow" id="loginForm">
+        {% csrf_token%}
+        <img class="mb-4" src="../static/img/moltech-logo.png" alt="">
+        <h1 class="h3 mb-3 font-weight-normal" style="color: black;">Acceso al sistema</h1>
+        <label for="inputUser" class="sr-only">Nombre de usuario</label>
+        <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required autofocus>
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+        <button class="btn btn-lg btn-primary btn-block" id="loginButton" type="submit">Ingresar</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+</div>
+{% endblock %}

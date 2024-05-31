@@ -1,0 +1,87 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="row align-items-center d-flex mx-auto px-0">  
+    <div class="container-fluid col-md-9 col-12 mb-3 mx-auto">
+        <div class="row col-md-12 col-12 justify-content-around align-items-center d-flex mx-auto px-0">
+            <div class="col-md-4 col-12 border shadow rounded card card-cuchilla text-info mt-3 text-secondary text-center py-2" id="selectorCupla">
+                <div class="row justify-content-center h3">
+                    <p>MODELO DE CUPLA</p>
+                </div>
+            {% if user.is_authenticated %}
+                <div class="row justify-content-around">
+                    {% if part_model == 1 %}
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple1" token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" token="{{ csrf_token }}">3</button>
+                    {% endif %}
+                    
+                    {% if part_model == 2 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple2" token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" token="{{ csrf_token }}">3</button>
+                    {% endif %}
+
+                    {% if part_model == 3 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple3" token="{{ csrf_token }}">3</button>
+                    {% endif %}
+
+                    {% if part_model > 3 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" token="{{ csrf_token }}">3</button>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="row justify-content-around">
+                    {% if part_model == 1 %}
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple1" disabled token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" disabled token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" disabled token="{{ csrf_token }}">3</button>
+                    {% endif %}
+                    
+                    {% if part_model == 2 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" disabled token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple2" disabled token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" disabled token="{{ csrf_token }}">3</button>
+                    {% endif %}
+
+                    {% if part_model == 3 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" disabled token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" disabled token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-success indLargo" id="selCuple3" disabled token="{{ csrf_token }}">3</button>
+                    {% endif %}
+
+                    {% if part_model > 3 %}
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple1" disabled token="{{ csrf_token }}">1</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple2" disabled token="{{ csrf_token }}">2</button>
+                        <button class="badge lg-badge badge-pill badge-secondary indLargo" id="selCuple3" disabled token="{{ csrf_token }}">3</button>
+                    {% endif %}
+                </div>
+            {% endif %} 
+            </div>
+        </div>
+        <div class="row col-md-12 col-12 d-flex justify-content-around align-items-center mx-auto px-0">
+            <div class="col-md-4 border d-flex d-inline shadow rounded p-2 card bg-light my-3 text-white p-3" id="controlPrincipal">
+                <button type="button" class="btn-success btn-lg mb-3" id="conectar">Conectar</button>
+                <button type="button" class="btn-danger btn-lg mb-3" id="modoSafe">Safe/Initial</button>
+                <button type="button" class="btn-warning btn-lg" id="reiniciar">Reiniciar</button>
+                <article class="d-none bg-secondary rounded-pill text-white w-25 text-center p-3" style="margin: 10px" id="homeOk" hidden>HOME OK</article>    
+            </div>
+            <div class="col-md-4 col-12 border shadow rounded p-2 card bg-light mt-3 text-white p-3">
+                <!-- <a type="button" class="btn-grad btn-lg" href="{% url 'sensores' %}">SENSORES</a> -->
+                <a type="button" class="btn-grad btn-lg" href="{% url 'parameters' %}">PARAMETROS</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="col-md-2 col-12 mb-5 float-right border shadow rounded bg-white px-1 my-3 py-1" style="right: 10px;">
+        {% include 'monitorComponent.html' %}
+        <div class="monitor" id="component-monitor"></div>
+    </div>
+</div>
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

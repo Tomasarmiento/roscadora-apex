@@ -1,0 +1,14 @@
+{% load static %}
+{% block content %}
+<div class="row p-0 m-0">
+    <div class="col bg-primary text-center font-weight-bold text-white rounded-top ">
+        MENSAJE
+    </div>
+</div>
+<div id="terminalDeTexto" class="overflow-auto  py-1 m-0 text-left " style="height: 330px; color: black; font-size: 13px;">
+<ul id="cuadroMensajes" style="padding-left: 10px;"></ul>
+</div>
+<script src="{% static 'js/cuadroDeTexto.js' %}"></script>
+<script src="{% static 'js/monitorHorizontal.js' %}"></script>
+<script src="{% static 'js/automatico.js' %}"></script>
+{% endblock %}

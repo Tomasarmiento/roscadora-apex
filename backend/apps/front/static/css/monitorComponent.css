@@ -1,0 +1,66 @@
+.indicadorMon {
+    width: 45%;
+    color: white;
+    text-align: center;
+    margin: 1%;
+    display: inline;
+    border-radius: 10px;
+    min-height: 54px;
+  }
+  
+  .indicadorMonSafe {
+    width: 45%;
+    color: white;
+    text-align: center;
+    margin: 1%;
+    display: inline;
+    border-radius: 10px;
+    min-height: 54px;
+    min-width: 92%
+  }
+  
+
+  .indicadorMonHome {
+    width: 45%;
+    color: white;
+    text-align: center;
+    margin: 1%;
+    display: inline;
+    border-radius: 10px;
+    min-height: 54px;
+  }
+  
+  .bg-c-pink {
+    background: linear-gradient(45deg, #ff5370, #ff869a);
+  }
+
+  .bg-c-skyblue {
+    background: linear-gradient(45deg, #00aeef, #73b4ff);
+  }
+  
+  .bg-c-blue {
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+  }
+
+  .bg-c-black {
+    background: linear-gradient(45deg, #000000, #000000);
+  }
+  
+  .bg-c-grey {
+    background: linear-gradient(45deg, #8d8d90, #cbcbcd);
+  }
+  
+  .bg-c-grey2 {
+    background: linear-gradient(45deg, #b7b7ba, #cbcbcd);
+  }
+
+  .bg-c-error {
+    background-color: red;
+  }
+  
+  article[title] {
+    background-color: black;
+  }
+
+  
+  
